@@ -11,21 +11,23 @@ class RoomController extends Controller
 {
     public function Index()
     {
-        $rooms = Room::orderBy('id','DESC')->get();
-        return view('admin.room.index',compact('rooms'));
+        $rooms = Room::orderBy('id', 'DESC')->get();
+        return view('admin.room.index', compact('rooms'));
     }
 
     public function AddRoom()
     {
         $halls = Hall::all();
-        return view('admin.room.add_room',compact('halls'));
+        return view('admin.room.add_room', compact('halls'));
     }
 
     public function StoreRoom(Request $request)
     {
         $request->validate([
             'hall_id' => 'required|exists:halls,id',
-            'room_number' => 'required|integer|min:1',
+            'room_number' => 'required|integer|unique:rooms,room_number',
+            'total_seats' => 'required|integer',
+            'available_seats' => 'required|integer',
         ]);
 
         Room::insert([
@@ -47,14 +49,16 @@ class RoomController extends Controller
     {
         $room = Room::findOrFail($id);
         $halls = Hall::all();
-        return view('admin.room.edit_room',compact('room','halls'));
+        return view('admin.room.edit_room', compact('room', 'halls'));
     }
 
     public function UpdateRoom(Request $request)
     {
         $request->validate([
             'hall_id' => 'required|exists:halls,id',
-            'room_number' => 'required|integer|min:1',
+            'room_number' => 'required|integer|unique:rooms,room_number',
+            'total_seats' => 'required|integer',
+            'available_seats' => 'required|integer',
         ]);
 
         Room::findOrFail($request->id)->update([
