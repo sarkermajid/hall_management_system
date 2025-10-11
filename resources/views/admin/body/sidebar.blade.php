@@ -34,6 +34,13 @@
             </a>
           </li>
 
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('applicant.users')}}">
+              <i class="link-icon" data-feather="chevron-right"></i>
+              <span class="link-title">Applicant Users</span>
+            </a>
+          </li>
+
         </ul>
       </div>
     </nav>

@@ -13,14 +13,19 @@
 </head>
 
 <body>
-    <form class="form">
+    <form action="{{ route('submitApplication') }}" class="form" method="POST">
+        @csrf
         <img src="{{ asset('frontend/img/university-logo.png') }}" width="100" height="100" alt="">
         <h2>Application for Hostel Accommodation</h2>
+        @if (session('message'))
+            <div class="alert alert-{{ session('alert-type') }}" style="color: green; margin-bottom:15px;">
+                {{ session('message') }}
+            </div>
+        @endif
         <div class="form-group">
-            <label for="email">Full Name:</label>
+            <label>Full Name:</label>
             <div class="relative">
-                <input class="form-control" id="name" type="text" pattern="[a-zA-Z\s]+" required=""
-                    autofocus="" title="Username should only contain letters. e.g. Piyush Gupta" autocomplete=""
+                <input class="form-control" name="name" value="{{ old('name') }}" type="text" required=""
                     placeholder="Type your name here...">
                 <i class="fa fa-user"></i>
             </div>
@@ -28,33 +33,32 @@
         <div class="form-group">
             <label for="email">Email address:</label>
             <div class="relative">
-                <input class="form-control" type="email" required="" placeholder="Type your email address..."
-                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                <input class="form-control" type="email" name="email" value="{{ old('email') }}" required=""
+                    placeholder="Type your email address...">
                 <i class="fa fa-envelope"></i>
             </div>
         </div>
         <div class="form-group">
             <label for="email">Contact Number:</label>
             <div class="relative">
-                <input class="form-control" type="text" maxlength="10"
-                    oninput="this.value=this.value.replace(/[^0-9]/g,'');" required=""
-                    placeholder="Type your Mobile Number...">
+                <input class="form-control" type="text" name="phone" value="{{ old('phone') }}" maxlength="11"
+                    required="" placeholder="Type your Mobile Number...">
                 <i class="fa fa-phone"></i>
             </div>
         </div>
         <div class="form-group">
-            <label for="email">Registration Number:</label>
+            <label>Registration Number:</label>
             <div class="relative">
-                <input class="form-control" type="text" pattern="[a-zA-Z\s]+" required=""
-                    placeholder="Mention your registration number...">
+                <input class="form-control" name="registration_num" value="{{ old('registration_num') }}" type="text"
+                    required="" placeholder="Mention your registration number...">
                 <i class="fa fa-building"></i>
             </div>
         </div>
         <div class="form-group">
-            <label for="email">Department:</label>
+            <label>Department:</label>
             <div class="relative">
-                <input class="form-control" type="text" pattern="[a-zA-Z\s]+" required=""
-                    placeholder="Mention your department...">
+                <input class="form-control" type="text" name="department" value="{{ old('department') }}"
+                    pattern="[a-zA-Z\s]+" required="" placeholder="Mention your department...">
                 <i class="fa fa-building"></i>
             </div>
         </div>

@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 require __DIR__ . '/auth.php';
 
 Route::get('/', [UserController::class, 'index'])->name('home');
+Route::post('/submit-application', [UserController::class, 'submitApplication'])->name('submitApplication');
 Route::get('admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login');
 
 Route::middleware('auth')->group(function () {
@@ -48,6 +49,11 @@ Route::middleware('auth')->group(function () {
         Route::get('room/edit/{id}', 'EditRoom')->name('room.edit');
         Route::post('room/update', 'UpdateRoom')->name('room.update');
         Route::get('room/delete/{id}', 'DeleteRoom')->name('room.delete');
+    });
+
+    Route::controller(UserController::class)->group(function () {
+        Route::get('applicant/users', 'ApplicantUsers')->name('applicant.users');
+        Route::get('applicant/user/delete', 'ApplicantUserDelete')->name('applicant.user.delete');
     });
 });
 
