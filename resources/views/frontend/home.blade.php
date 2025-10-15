@@ -49,7 +49,7 @@
         <div class="form-group">
             <label>Registration Number:</label>
             <div class="relative">
-                <input class="form-control" name="registration_num" value="{{ old('registration_num') }}" type="text"
+                <input class="form-control" name="reg_no" value="{{ old('registration_num') }}" type="text"
                     required="" placeholder="Mention your registration number...">
                 <i class="fa fa-building"></i>
             </div>

@@ -36,7 +36,7 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'phone' => 'required|string|max:11|unique:users,phone',
-            'registration_num' => 'required|string|max:255',
+            'reg_no' => 'required|string|max:255',
             'department' => 'required|string|max:255',
         ]);
 
@@ -44,7 +44,7 @@ class UserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
-            'registration_num' => $request->registration_num,
+            'reg_no' => $request->reg_no,
             'department' => $request->department,
             'role_id' => 2,
         ]);

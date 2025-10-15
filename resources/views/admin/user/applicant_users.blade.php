@@ -14,8 +14,8 @@
                                         <th>Name</th>
                                         <th>Reg No</th>
                                         <th>Department</th>
-                                        <th>Status</th>
                                         <th>Date</th>
+                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -26,12 +26,13 @@
                                             <td>{{ $item->name }}</td>
                                             <td>{{ $item->registration_num }}</td>
                                             <td>{{ $item->department }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($item->created_at)->format('F j, Y') }}</td>
                                             <td>
-                                                <p class="btn btn-sm {{ $item->status == 1 ? 'btn-inverse-info' : 'btn-inverse-danger' }}">
+                                                <p
+                                                    class="btn btn-sm {{ $item->status == 1 ? 'btn-inverse-info' : 'btn-inverse-danger' }}">
                                                     {{ $item->status == 1 ? 'Active' : 'Inactive' }}
                                                 </p>
                                             </td>
-                                            <td>{{ \Carbon\Carbon::parse($item->created_at)->format('F j, Y') }}</td>
                                             <td>
                                                 <a href="{{ route('room.edit', ['id' => $item->id]) }}"
                                                     class="btn btn-inverse-primary"> Check Availability </a>
