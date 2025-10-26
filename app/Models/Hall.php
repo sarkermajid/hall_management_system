@@ -12,6 +12,7 @@ class Hall extends Model
     protected $fillable = [
         'name',
         'total_capacity',
+        'gender',
     ];
 
     public function Rooms()

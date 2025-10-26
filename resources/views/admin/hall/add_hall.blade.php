@@ -20,16 +20,14 @@
                                     </ul>
                                 </div>
                             @endif
-                            <form method="POST" action="{{ route('hall.store') }}" class="forms-sample"
-                                id="myForm">
+                            <form method="POST" action="{{ route('hall.store') }}" class="forms-sample" id="myForm">
                                 @csrf
 
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group mb-3">
                                             <label for="name" class="form-label">Name</label>
-                                            <input type="text" name="name"  class="form-control"
-                                                id="name">
+                                            <input type="text" name="name" class="form-control" id="name">
                                         </div>
                                     </div>
                                 </div>
@@ -37,8 +35,21 @@
                                     <div class="col-md-12">
                                         <div class="form-group mb-3">
                                             <label for="total_capacity" class="form-label">Total Capacity</label>
-                                            <input type="text" name="total_capacity"  class="form-control"
+                                            <input type="text" name="total_capacity" class="form-control"
                                                 id="total_capacity">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group mb-3">
+                                            <label for="gender" class="form-label">Hall For</label>
+                                            <select name="gender" id="" class="form-control">
+                                                <option value="">--- Select For --- </option>
+                                                <option value="male"> Male </option>
+                                                <option value="female"> Female </option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>

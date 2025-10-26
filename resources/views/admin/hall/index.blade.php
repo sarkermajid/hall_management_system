@@ -18,6 +18,7 @@
                                         <th>Sl</th>
                                         <th>Name</th>
                                         <th>Total Capacity</th>
+                                        <th>Hall For</th>
                                         <th>Date</th>
                                         <th>Action</th>
                                     </tr>
@@ -28,6 +29,7 @@
                                             <td>{{ $key + 1 }}</td>
                                             <td>{{ $item->name }}</td>
                                             <td>{{ $item->total_capacity }}</td>
+                                            <td>{{ $item->gender == 'male' ? "Male" : 'Female' }}</td>
                                             <td>{{ \Carbon\Carbon::parse($item->created_at)->format('F j, Y') }}</td>
                                             <td>
                                                 <a href="{{ route('hall.edit', ['id' => $item->id]) }}"

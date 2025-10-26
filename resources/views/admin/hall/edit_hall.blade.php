@@ -47,6 +47,20 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group mb-3">
+                                            <label for="gender" class="form-label">Hall For</label>
+                                            <select name="gender" id="" class="form-control">
+                                                <option value="">--- Select For --- </option>
+                                                <option value="male"  {{ $hall->gender == 'male' ? 'selected' : '' }}> Male </option>
+                                                <option value="female"  {{ $hall->gender == 'female' ? 'selected' : '' }}> Female </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <button type="submit" class="btn btn-primary me-2">Save Changes</button>
                             </form>
                         </div>

@@ -24,11 +24,13 @@ class HallController extends Controller
         $request->validate([
             'name' => 'required',
             'total_capacity' => 'required|integer|min:1',
+            'gender' => 'required',
         ]);
 
         Hall::insert([
             'name' => $request->name,
             'total_capacity' => $request->total_capacity,
+            'gender' => $request->gender,
         ]);
 
         $notification = array(
@@ -47,14 +49,17 @@ class HallController extends Controller
 
     public function UpdateHall(Request $request, $id)
     {
+        // dd($request->all());
         $request->validate([
             'name' => 'required',
             'total_capacity' => 'required|integer|min:1',
+            'gender' => 'required',
         ]);
 
         Hall::findOrFail($id)->update([
             'name' => $request->name,
             'total_capacity' => $request->total_capacity,
+            'gender' => $request->gender,
         ]);
 
         $notification = array(
