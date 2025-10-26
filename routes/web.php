@@ -57,6 +57,9 @@ Route::middleware('auth')->group(function () {
         Route::get('provosts', 'Index')->name('provost.index');
         Route::get('provost/add', 'addProvost')->name('provost.add');
         Route::post('provost/store', 'storeProvost')->name('provost.store');
+        Route::get('provost/edit/{id}', 'EditProvost')->name('provost.edit');
+        Route::post('provost/update', 'updateProvost')->name('provost.update');
+        Route::get('provost/delete/{id}', 'DeleteProvost')->name('provost.delete');
     });
 
     Route::controller(UserController::class)->group(function () {

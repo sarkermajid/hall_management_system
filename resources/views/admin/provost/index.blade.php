@@ -32,9 +32,9 @@
                                             <td>{{ $item->Halls->name }}</td>
                                             <td>{{ \Carbon\Carbon::parse($item->created_at)->format('F j, Y') }}</td>
                                             <td>
-                                                <a href="{{ route('room.edit', ['id' => $item->id]) }}"
+                                                <a href="{{ route('provost.edit', ['id' => $item->id]) }}"
                                                     class="btn btn-inverse-primary"> Edit </a>
-                                                <a href="{{ route('room.delete', ['id' => $item->id]) }}"
+                                                <a href="{{ route('provost.delete', ['id' => $item->id]) }}"
                                                     class="btn btn-inverse-danger" id="delete"> Delete </a>
                                             </td>
                                         </tr>

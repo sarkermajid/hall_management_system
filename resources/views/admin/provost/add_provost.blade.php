@@ -6,6 +6,7 @@
                 <div class="row">
                     <div class="card">
                         <div class="card-body">
+                        <h6 class="card-title">Add Provost</h6>
                             @if (session('success'))
                                 <div class="alert alert-success">
                                     {{ session('success') }}
@@ -22,6 +23,19 @@
                             @endif
                             <form method="POST" action="{{ route('provost.store') }}" class="forms-sample" id="myForm">
                                 @csrf
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group mb-3">
+                                            <label for="hall_id" class="form-label">Halls</label>
+                                            <select name="hall_id" id="hall_id" class="form-control">
+                                                <option value="">--- Select Halls --- </option>
+                                                @foreach ($halls as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <div class="row">
                                     <div class="col-md-12">
@@ -37,20 +51,6 @@
                                         <div class="form-group mb-3">
                                             <label for="email" class="form-label">Email</label>
                                             <input type="email" name="email" class="form-control" id="email">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group mb-3">
-                                            <label for="hall_id" class="form-label">Halls</label>
-                                            <select name="hall_id" id="hall_id" class="form-control">
-                                                <option value="">--- Select Halls --- </option>
-                                                @foreach ($halls as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                                @endforeach
-                                            </select>
                                         </div>
                                     </div>
                                 </div>

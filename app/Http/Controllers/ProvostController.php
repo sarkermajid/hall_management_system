@@ -32,6 +32,19 @@ class ProvostController extends Controller
             'hall_id' => 'required|integer',
         ]);
 
+        $existingProvost = User::where('hall_id', $request->hall_id)
+            ->where('role_id', 2)
+            ->first();
+
+        if ($existingProvost) {
+            $notification = array(
+                'message' => 'This hall already has a Provost!',
+                'alert-type' => 'error'
+            );
+
+            return redirect()->back()->with($notification);
+        }
+
         $rawPassword = Str::random(10);
 
         User::create([
@@ -42,6 +55,23 @@ class ProvostController extends Controller
             'role_id'  => 2
         ]);
 
-        return redirect()->back()->with('success', 'Provost created successfully!');
+        $notification = array(
+            'message' => 'Provost Created Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('provost.index')->with($notification);
+    }
+
+    public function DeleteProvost($id)
+    {
+        User::findOrFail($id)->delete();
+
+        $notification = array(
+            'message' => 'Provost Deleted Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('provost.index')->with($notification);
     }
 }
