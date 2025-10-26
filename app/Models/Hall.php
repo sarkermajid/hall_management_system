@@ -19,4 +19,5 @@ class Hall extends Model
     {
         return $this->hasMany(Room::class, 'hall_id', 'id');
     }
+
 }

@@ -39,4 +39,8 @@ class User extends Authenticatable
     ];
 
 
+    public function Halls()
+    {
+        return $this->belongsTo(Hall::class, 'hall_id', 'id');
+    }
 }

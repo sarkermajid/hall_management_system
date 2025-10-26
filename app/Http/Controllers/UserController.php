@@ -46,7 +46,7 @@ class UserController extends Controller
             'phone' => $request->phone,
             'reg_no' => $request->reg_no,
             'department' => $request->department,
-            'role_id' => 2,
+            'role_id' => 3,
         ]);
 
         $notification = array(
