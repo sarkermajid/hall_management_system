@@ -53,7 +53,7 @@
                         <td>{{ $user->email }}</td>
                         <td>
                             @if ($user->status == 0)
-                                <span class="badge-warning">Pending</span>
+                                <span class="badge-warning">Waiting</span>
                             @elseif($user->status == 1)
                                 <span class="badge-success">Approved</span>
                             @elseif($user->status == 2)

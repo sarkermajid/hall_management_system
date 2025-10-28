@@ -24,14 +24,19 @@
                                         <tr>
                                             <td>{{ $key + 1 }}</td>
                                             <td>{{ $item->name }}</td>
-                                            <td>{{ $item->registration_num }}</td>
+                                            <td>{{ $item->reg_no }}</td>
                                             <td>{{ $item->department }}</td>
                                             <td>{{ \Carbon\Carbon::parse($item->created_at)->format('F j, Y') }}</td>
                                             <td>
-                                                <p
-                                                    class="btn btn-sm {{ $item->status == 1 ? 'btn-inverse-info' : 'btn-inverse-danger' }}">
-                                                    {{ $item->status == 1 ? 'Active' : 'Inactive' }}
-                                                </p>
+                                                @if ($item->status == 0)
+                                                    <span class="badge bg-warning text-dark">Waiting</span>
+                                                @elseif($item->status == 1)
+                                                    <span class="badge bg-success text-white">Active</span>
+                                                @elseif($item->status == 2)
+                                                    <span class="badge bg-danger text-white">Rejected</span>
+                                                @else
+                                                    <span class="badge bg-secondary text-white">Unknown</span>
+                                                @endif
                                             </td>
                                             <td>
                                                 <a href="{{ route('room.edit', ['id' => $item->id]) }}"

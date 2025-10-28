@@ -61,7 +61,7 @@ class UserController extends Controller
 
     public function ApplicantUsers()
     {
-        $users = User::where('role_id', 2)->orderBy('id', 'DESC')->get();
+        $users = User::where('role_id', 3)->orderBy('id', 'DESC')->get();
         return view('admin.user.applicant_users', compact('users'));
     }
 
