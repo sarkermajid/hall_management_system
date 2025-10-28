@@ -77,6 +77,18 @@
                 </div>
             </div>
         </div> --}}
+        <div class="gender-wrapper">
+            <label class="gender-item">
+                <input type="radio" name="gender" value="male">
+                Male
+            </label>
+
+            <label class="gender-item">
+                <input type="radio" name="gender" value="female">
+                Female
+            </label>
+        </div>
+
 
         <div class="tright">
             <a href=""><button class="movebtn movebtnre" type="Reset"><i class="fa fa-fw fa-refresh"></i> Reset
@@ -84,14 +96,34 @@
             <a href=""><button class="movebtn movebtnsu" type="Submit">Submit <i
                         class="fa fa-fw fa-paper-plane"></i></button></a>
         </div>
+        <div>If you have previously submitted a Hostel accommodation, you may check your current <a href="{{ route('applicationStatus') }}">application
+                status</a>.</div>
     </form>
-
-    <div class="thanks" style="display: none;">
-        <h4>Thank you!</h4>
-        <p><small>Your message has been successfully sent.</small></p>
-    </div>
 
     <script src="{{ asset('frontend/js/home.js') }}"></script>
 </body>
+<style>
+    .gender-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 25px;
+        /* distance maintain */
+        margin-top: 5px;
+    }
+
+    .gender-item {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-weight: 500;
+        cursor: pointer;
+    }
+
+    .gender-item input {
+        width: 16px;
+        height: 16px;
+        cursor: pointer;
+    }
+</style>
 
 </html>

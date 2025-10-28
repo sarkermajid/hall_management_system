@@ -36,8 +36,9 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'phone' => 'required|string|max:11|unique:users,phone',
-            'reg_no' => 'required|string|max:255',
+            'reg_no' => 'required|string|max:255|unique:users,reg_no',
             'department' => 'required|string|max:255',
+            'gender' => 'required',
         ]);
 
         User::create([
@@ -46,6 +47,7 @@ class UserController extends Controller
             'phone' => $request->phone,
             'reg_no' => $request->reg_no,
             'department' => $request->department,
+            'gender' => $request->gender,
             'role_id' => 3,
         ]);
 
@@ -74,5 +76,74 @@ class UserController extends Controller
         );
 
         return redirect()->back()->with($notification);
+    }
+
+    public function applicationStatus()
+    {
+        return view('frontend.application_status');
+    }
+
+    public function checkApplicationStatus(Request $request)
+    {
+        $request->validate([
+            'reg_no' => 'required|string|max:255',
+        ]);
+
+        $user = User::where('reg_no', $request->reg_no)->first();
+        if (!$user) {
+            $notification = [
+                'message' => 'No applicant found with the provided registration number.',
+                'alert-type' => 'error'
+            ];
+
+            return redirect()->route('applicationStatus')->with($notification);
+        }
+        return view('frontend.application_status', compact('user'));
+    }
+
+    public function paymentSlipUpload($reg_no)
+    {
+        $user = User::where('reg_no', $reg_no)->first();
+        return view('frontend.payment_slip_upload', compact('user'));
+    }
+
+    public function submitPaymentSlip(Request $request)
+    {
+        $request->validate([
+            'reg_no' => 'required|string|max:255',
+            'payment_slip' => 'required|mimes:jpg,jpeg,png,pdf|max:2048'
+        ]);
+
+        $user = User::where('reg_no', $request->reg_no)->first();
+
+        if (!$user) {
+            return redirect()->back()->with([
+                'message' => 'Invalid registration number!',
+                'alert-type' => 'error'
+            ]);
+        }
+
+        if ($request->hasFile('payment_slip')) {
+            if (!file_exists(public_path('payment_slips'))) {
+                mkdir(public_path('payment_slips'), 0777, true);
+            }
+
+            $file = $request->file('payment_slip');
+            $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('payment_slips'), $filename);
+
+            $user->payment_slip = $filename;
+            $user->save();
+
+            return redirect()->back()->with([
+                'message' => 'Payment slip submitted successfully!',
+                'alert-type' => 'success'
+            ]);
+        }
+
+        return redirect()->back()->with([
+            'message' => 'No file received!',
+            'alert-type' => 'error'
+        ]);
     }
 }

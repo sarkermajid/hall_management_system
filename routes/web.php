@@ -22,6 +22,10 @@ require __DIR__ . '/auth.php';
 
 Route::get('/', [UserController::class, 'index'])->name('home');
 Route::post('/submit-application', [UserController::class, 'submitApplication'])->name('submitApplication');
+Route::get('/application-status', [UserController::class, 'applicationStatus'])->name('applicationStatus');
+Route::get('/payment-slip-upload/{reg_no}', [UserController::class, 'paymentSlipUpload'])->name('paymentSlipUpload');
+Route::post('/submit-payment-slip', [UserController::class, 'submitPaymentSlip'])->name('submitPaymentSlip');
+Route::post('/check-application-status', [UserController::class, 'checkApplicationStatus'])->name('checkApplicationStatus');
 Route::get('admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login');
 
 Route::middleware('auth')->group(function () {
