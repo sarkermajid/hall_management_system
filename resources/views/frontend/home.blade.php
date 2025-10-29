@@ -49,7 +49,7 @@
         <div class="form-group">
             <label>Registration Number:</label>
             <div class="relative">
-                <input class="form-control" name="reg_no" value="{{ old('registration_num') }}" type="text"
+                <input class="form-control" name="reg_no" value="{{ old('registration_num') }}" type="number"
                     required="" placeholder="Mention your registration number...">
                 <i class="fa fa-building"></i>
             </div>
@@ -63,20 +63,6 @@
             </div>
         </div>
 
-        {{-- <div class="form-group">
-            <label for="email">Attachment:</label>
-            <div class="relative">
-                <div class="input-group">
-                    <label class="input-group-btn">
-                        <span class="btn btn-default">
-                            Browse&hellip; <input type="file" style="display: none;" multiple>
-                        </span>
-                    </label>
-                    <input type="text" class="form-control" required="" placeholder="Attachment..." readonly>
-                    <i class="fa fa-link"></i>
-                </div>
-            </div>
-        </div> --}}
         <div class="gender-wrapper">
             <label class="gender-item">
                 <input type="radio" name="gender" value="male">
@@ -93,10 +79,12 @@
         <div class="tright">
             <a href=""><button class="movebtn movebtnre" type="Reset"><i class="fa fa-fw fa-refresh"></i> Reset
                 </button></a>
-            <a href=""><button class="movebtn movebtnsu" type="Submit">Submit <i
-                        class="fa fa-fw fa-paper-plane"></i></button></a>
+            <button class="movebtn movebtnsu" type="submit">
+                Submit <i class="fa fa-fw fa-paper-plane"></i>
+            </button>
         </div>
-        <div>If you have previously submitted a Hostel accommodation, you may check your current <a href="{{ route('applicationStatus') }}">application
+        <div>If you have previously submitted a Hostel accommodation, you may check your current <a
+                href="{{ route('applicationStatus') }}">application
                 status</a>.</div>
     </form>
 

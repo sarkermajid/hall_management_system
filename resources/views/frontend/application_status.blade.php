@@ -53,13 +53,11 @@
                         <td>{{ $user->email }}</td>
                         <td>
                             @if ($user->status == 0)
-                                <span class="badge-warning">Waiting</span>
+                                <span class="badge-warning text-dark">Waiting</span>
                             @elseif($user->status == 1)
-                                <span class="badge-success">Approved</span>
+                                <span class="badge-info text-white">Available</span>
                             @elseif($user->status == 2)
-                                <span class="badge-danger">Rejected</span>
-                            @else
-                                <span class="badge-secondary">Not Submitted</span>
+                                <span class="badge-success text-white">Approved</span>
                             @endif
                         </td>
                     </tr>
@@ -67,8 +65,10 @@
             </table>
             @if ($user->status == 1)
                 <div class="badge-success" style="padding: 20px; margin-top:20px;">
-                    <strong>Congratulations!</strong> Your hall application has been approved.
-                    Please complete your payment and upload the payment slip using the link below:
+                    <strong>Congratulations!</strong>
+                    Your hostel accommodation request has been approved and a room is now available for you.
+                    To finalize your accommodation, please complete the required payment and upload the payment slip
+                    using the link below
                     <br>
                     <a href="{{ route('paymentSlipUpload', $user->reg_no) }}" class="btn btn-primary btn-sm mt-2">
                         Upload Payment Slip
@@ -121,6 +121,12 @@
             background: #d1e7dd;
             border: 1px solid #0f5132;
             color: #0f5132;
+            padding: 5px;
+        }
+        .badge-info {
+            background: #d1e7dd;
+            border: 1px solid #117A8B;
+            color: #117A8B;
             padding: 5px;
         }
 

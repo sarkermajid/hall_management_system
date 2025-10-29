@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Room;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -30,33 +31,50 @@ class UserController extends Controller
 
     public function submitApplication(Request $request)
     {
-        // dd($request->all());
-
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'phone' => 'required|string|max:11|unique:users,phone',
-            'reg_no' => 'required|string|max:255|unique:users,reg_no',
+            'reg_no' => 'required|max:255|unique:users,reg_no',
             'department' => 'required|string|max:255',
             'gender' => 'required',
         ]);
 
-        User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'reg_no' => $request->reg_no,
-            'department' => $request->department,
-            'gender' => $request->gender,
-            'role_id' => 3,
-        ]);
+        $user = new User;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->reg_no = $request->reg_no;
+        $user->department = $request->department;
+        $user->gender = $request->gender;
+        $user->role_id = 3;
+        $user->save();
 
-        $notification = array(
-            'message' => 'Application Submitted Successfully',
+        $room = Room::whereHas('Halls', function ($query) use ($request) {
+            $query->where('gender', $request->gender);
+        })
+            ->where('available_seats', '>', 0)
+            ->orderBy('available_seats', 'ASC')
+            ->first();
+        if (!$room) {
+            return redirect()->route('home')->with([
+                'message' => 'Currently no hostel seats are available.',
+                'alert-type' => 'error'
+            ]);
+        }
+        $user->room_id = $room->id;
+        $user->status = 1;
+        $user->room_allocated_at = now();
+        $user->save();
+
+        $room->available_seats -= 1;
+        $room->save();
+
+        return redirect()->route('home')->with([
+            'message' => 'Application submitted and a room has been allocated successfully!
+                        Please check your application status and upload your payment slip within 72 hours, otherwise your room allocation will be cancelled automatically.',
             'alert-type' => 'success'
-        );
-
-        return redirect()->route('home')->with($notification);
+        ]);
     }
 
     public function ApplicantUsers()

@@ -43,4 +43,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Hall::class, 'hall_id', 'id');
     }
+
+    public function room()
+    {
+        return $this->belongsTo(Room::class, 'room_id', 'id');
+    }
 }

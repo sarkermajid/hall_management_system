@@ -31,11 +31,9 @@
                                                 @if ($item->status == 0)
                                                     <span class="badge bg-warning text-dark">Waiting</span>
                                                 @elseif($item->status == 1)
-                                                    <span class="badge bg-success text-white">Active</span>
+                                                    <span class="badge bg-info text-white">Available</span>
                                                 @elseif($item->status == 2)
-                                                    <span class="badge bg-danger text-white">Rejected</span>
-                                                @else
-                                                    <span class="badge bg-secondary text-white">Unknown</span>
+                                                    <span class="badge bg-success text-white">Approved</span>
                                                 @endif
                                             </td>
                                             <td>
