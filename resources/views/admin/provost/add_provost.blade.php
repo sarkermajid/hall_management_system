@@ -55,6 +55,15 @@
                                     </div>
                                 </div>
 
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group mb-3">
+                                            <label for="password" class="form-label">Password</label>
+                                            <input type="password" name="password" class="form-control" id="password">
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <button type="submit" class="btn btn-primary me-2">Save Changes</button>
                             </form>
                         </div>
