@@ -83,6 +83,12 @@ class UserController extends Controller
         return view('admin.user.applicant_users', compact('users'));
     }
 
+    public function ApplicantUserAvailability($id)
+    {
+        $user = User::find($id);
+        return view('admin.user.confirm_availability_user',compact('user'));
+    }
+
     public function ApplicantUserDelete(Request $request)
     {
         $user = User::findOrFail($request->id);

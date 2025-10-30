@@ -69,6 +69,7 @@ Route::middleware('auth')->group(function () {
     Route::controller(UserController::class)->group(function () {
 
         Route::get('applicant/users', 'ApplicantUsers')->name('applicant.users');
+        Route::get('applicant/user/availability/{id}', 'ApplicantUserAvailability')->name('applicant.user.availability');
         Route::get('applicant/user/delete', 'ApplicantUserDelete')->name('applicant.user.delete');
 
     });

@@ -37,8 +37,8 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <a href="{{ route('room.edit', ['id' => $item->id]) }}"
-                                                    class="btn btn-inverse-primary"> Check Availability </a>
+                                                <a href="{{ route('applicant.user.availability', ['id' => $item->id]) }}"
+                                                    class="btn btn-inverse-primary"> Confirm Availability </a>
                                                 <a href="{{ route('applicant.user.delete', ['id' => $item->id]) }}"
                                                     class="btn btn-inverse-danger" id="delete"> Delete </a>
                                             </td>
