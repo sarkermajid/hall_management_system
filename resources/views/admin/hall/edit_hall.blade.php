@@ -6,6 +6,7 @@
                 <div class="row">
                     <div class="card">
                         <div class="card-body">
+                            <h6 class="card-title">Edit Hall</h6>
                             @if (session('success'))
                                 <div class="alert alert-success">
                                     {{ session('success') }}
@@ -54,8 +55,10 @@
                                             <label for="gender" class="form-label">Hall For</label>
                                             <select name="gender" id="" class="form-control">
                                                 <option value="">--- Select For --- </option>
-                                                <option value="male"  {{ $hall->gender == 'male' ? 'selected' : '' }}> Male </option>
-                                                <option value="female"  {{ $hall->gender == 'female' ? 'selected' : '' }}> Female </option>
+                                                <option value="male" {{ $hall->gender == 'male' ? 'selected' : '' }}> Male
+                                                </option>
+                                                <option value="female" {{ $hall->gender == 'female' ? 'selected' : '' }}>
+                                                    Female </option>
                                             </select>
                                         </div>
                                     </div>

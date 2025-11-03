@@ -6,6 +6,7 @@
                 <div class="row">
                     <div class="card">
                         <div class="card-body">
+                            <h6 class="card-title">Edit Room</h6>
                             @if (session('success'))
                                 <div class="alert alert-success">
                                     {{ session('success') }}
@@ -44,7 +45,9 @@
                                             <select name="hall_id" id="" class="form-control">
                                                 <option value="">--- Select Halls --- </option>
                                                 @foreach ($halls as $item)
-                                                    <option value="{{ $item->id }}" {{ $room->hall_id == $item->id ? 'selected' : '' }}>{{ $item->name }}</option>
+                                                    <option value="{{ $item->id }}"
+                                                        {{ $room->hall_id == $item->id ? 'selected' : '' }}>
+                                                        {{ $item->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -55,7 +58,8 @@
                                     <div class="col-md-12">
                                         <div class="form-group mb-3">
                                             <label for="total_seats" class="form-label">Total Seats</label>
-                                            <input type="text" name="total_seats" value="{{ $room->total_seats }}" class="form-control" id="total_seats">
+                                            <input type="text" name="total_seats" value="{{ $room->total_seats }}"
+                                                class="form-control" id="total_seats">
                                         </div>
                                     </div>
                                 </div>
@@ -64,7 +68,8 @@
                                     <div class="col-md-12">
                                         <div class="form-group mb-3">
                                             <label for="available_seats" class="form-label">Available Seats</label>
-                                            <input type="text" name="available_seats" value="{{ $room->available_seats }}" class="form-control"
+                                            <input type="text" name="available_seats"
+                                                value="{{ $room->available_seats }}" class="form-control"
                                                 id="available_seats">
                                         </div>
                                     </div>

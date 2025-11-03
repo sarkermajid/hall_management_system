@@ -6,6 +6,7 @@
                 <div class="row">
                     <div class="card">
                         <div class="card-body">
+                            <h6 class="card-title">Add Hall</h6>
                             @if (session('success'))
                                 <div class="alert alert-success">
                                     {{ session('success') }}
