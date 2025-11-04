@@ -6,6 +6,7 @@
                 <div class="row">
                     <div class="card">
                         <div class="card-body">
+                            <h6 class="card-title">Confirm Availability</h6>
                             @if (session('success'))
                                 <div class="alert alert-success">
                                     {{ session('success') }}
@@ -25,15 +26,14 @@
                                     </ul>
                                 </div>
                             @endif
-                            <form method="POST" action="{{ route('hall.update', ['id' => $hall->id]) }}"
-                                class="forms-sample" id="myForm">
+                            <form method="POST" action="" class="forms-sample" id="myForm">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group mb-3">
                                             <label for="name" class="form-label">Name</label>
-                                            <input type="text" value="{{ $hall->name }}" name="name"
-                                                class="form-control">
+                                            <input type="text" value="{{ $user->name }}" name="name"
+                                                class="form-control" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -41,9 +41,20 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group mb-3">
-                                            <label for="total_capacity" class="form-label">Total Capacity</label>
-                                            <input type="text" value="{{ $hall->total_capacity }}" name="total_capacity"
-                                                class="form-control">
+                                            <label for="email" class="form-label">Email</label>
+                                            <input type="email" value="{{ $user->email }}" name="email"
+                                                class="form-control" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group mb-3">
+                                            <label for="phone" class="form-label">Phone</label>
+                                            <input type="text" value="{{ $user->phone }}" name="phone"
+                                                class="form-control" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -51,11 +62,82 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group mb-3">
-                                            <label for="gender" class="form-label">Hall For</label>
-                                            <select name="gender" id="" class="form-control">
-                                                <option value="">--- Select For --- </option>
-                                                <option value="male"  {{ $hall->gender == 'male' ? 'selected' : '' }}> Male </option>
-                                                <option value="female"  {{ $hall->gender == 'female' ? 'selected' : '' }}> Female </option>
+                                            <label for="reg_no" class="form-label">Registration No</label>
+                                            <input type="text" value="{{ $user->reg_no }}" name="reg_no"
+                                                class="form-control" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group mb-3">
+                                            <label for="department" class="form-label">Department</label>
+                                            <input type="text" value="{{ $user->department }}" name="department"
+                                                class="form-control" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group mb-3">
+                                            <label for="hall_id" class="form-label">Hall</label>
+                                            <input type="text" value="{{ $user->Halls->name }}" name="hall_id"
+                                                class="form-control" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group mb-3">
+                                            <label for="room_number" class="form-label">Room</label>
+                                            <input type="text" value="{{ $user->room->room_number }}" name="room_number"
+                                                class="form-control" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group mb-3">
+                                            <label for="gender" class="form-label">Gender</label>
+                                            <input type="text" value="{{ $user->gender }}" name="gender"
+                                                class="form-control" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <tr>
+                                            <label for="payment_slip" class="form-label">Payment Slip</label>
+                                            <td colspan="2">
+                                                <object data="{{ asset('payment_slips/' . $user->payment_slip) }}"
+                                                    type="application/pdf" width="100%" height="500px">
+                                                    <p>Your browser does not support PDFs. <a
+                                                            href="{{ asset('payment_slips/' . $user->payment_slip) }}"
+                                                            target="_blank">Download it here</a>.</p>
+                                                </object>
+                                            </td>
+                                        </tr>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group mb-3">
+                                            <label for="status" class="form-label">Status</label>
+                                            <select name="status" id="status" class="form-control">
+                                                <option value="">--- Select Status --- </option>
+                                                <option value="0" {{ $user->status == 0 ? 'selected' : '' }}>Waiting
+                                                </option>
+                                                <option value="1" {{ $user->status == 1 ? 'selected' : '' }}>
+                                                    Available
+                                                </option>
+                                                <option value="2" {{ $user->status == 2 ? 'selected' : '' }}>Approved
+                                                </option>
                                             </select>
                                         </div>
                                     </div>
