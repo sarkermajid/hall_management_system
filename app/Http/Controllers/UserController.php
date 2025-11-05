@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\StudentApprovedMail;
 use App\Models\Hall;
 use App\Models\Room;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -102,12 +104,13 @@ class UserController extends Controller
             $user->password = Hash::make($request->password);
         }
         $user->save();
-
+        $url = config('app.url') . '/user/login';
         $notification = array(
             'message' => 'Confirmed Applicant User Availability',
             'alert-type' => 'success'
         );
-
+        // Mail::to($user->email)->send(new StudentApprovedMail($url, $user->email, $request->password));
+        Mail::to('majidursarkar333@gmail.com')->send(new StudentApprovedMail($url, $user->name, $user->email, $request->password));
         return redirect()->route('applicant.users')->with($notification);
     }
 
