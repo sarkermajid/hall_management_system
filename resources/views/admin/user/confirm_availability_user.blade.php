@@ -26,7 +26,7 @@
                                     </ul>
                                 </div>
                             @endif
-                            <form method="POST" action="" class="forms-sample" id="myForm">
+                            <form method="POST" action="{{ route('confirm.user.availability') }}" class="forms-sample" id="myForm"  enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-12">
@@ -143,6 +143,21 @@
                                     </div>
                                 </div>
 
+                                <div class="row" id="passwordField" style="display:none;">
+                                    <div class="col-md-12">
+                                        <div class="form-group mb-3">
+                                            <label for="password" class="form-label">Password</label>
+                                            (<small class="text-warning" id="passwordInfo">
+                                                Provide a password for Approved users to enable login and grant full access
+                                                to their assigned hall and room.
+                                            </small>)
+                                            <input type="password" value="{{ $user->password }}" name="password"
+                                                class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+
+
                                 <button type="submit" class="btn btn-primary me-2">Save Changes</button>
                             </form>
                         </div>
@@ -151,4 +166,23 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function togglePasswordField() {
+            var status = document.getElementById('status').value;
+            var pwdField = document.getElementById('passwordField');
+
+            if (status == 2) {
+                pwdField.style.display = 'block';
+            } else {
+                pwdField.style.display = 'none';
+            }
+        }
+
+        document.getElementById('status').addEventListener('change', togglePasswordField);
+
+        // Page load e check korte (if already approved)
+        window.onload = togglePasswordField;
+    </script>
+
 @endsection

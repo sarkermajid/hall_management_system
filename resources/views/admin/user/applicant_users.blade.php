@@ -31,14 +31,30 @@
                                                 @if ($item->status == 0)
                                                     <span class="badge bg-warning text-dark">Waiting</span>
                                                 @elseif($item->status == 1)
-                                                    <span class="badge bg-info text-white">Available</span>
+                                                    <span class="badge bg-primary text-white">Available</span>
                                                 @elseif($item->status == 2)
                                                     <span class="badge bg-success text-white">Approved</span>
                                                 @endif
                                             </td>
                                             <td>
+                                                @php
+                                                    $btnClass = match ($item->status) {
+                                                        0 => 'btn-inverse-warning',
+                                                        1 => 'btn-inverse-primary',
+                                                        2 => 'btn-inverse-success',
+                                                    };
+                                                @endphp
+
                                                 <a href="{{ route('applicant.user.availability', ['id' => $item->id]) }}"
-                                                    class="btn btn-inverse-primary"> Confirm Availability </a>
+                                                    class="btn {{ $btnClass }}">
+                                                    @if ($item->status == 0)
+                                                        Waiting for Availability
+                                                    @elseif($item->status == 1)
+                                                        Check Availability
+                                                    @else
+                                                        Confirmed Availability
+                                                    @endif
+                                                </a>
                                                 <a href="{{ route('applicant.user.delete', ['id' => $item->id]) }}"
                                                     class="btn btn-inverse-danger" id="delete"> Delete </a>
                                             </td>

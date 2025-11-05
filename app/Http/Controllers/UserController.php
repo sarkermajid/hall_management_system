@@ -87,8 +87,30 @@ class UserController extends Controller
     public function ApplicantUserAvailability($id)
     {
         $user = User::find($id);
-        return view('admin.user.confirm_availability_user',compact('user'));
+        return view('admin.user.confirm_availability_user', compact('user'));
     }
+
+    public function confirmAvailabilityUpdate(Request $request)
+    {
+        $request->validate([
+            'password' => 'nullable|min:6',
+        ]);
+
+        $user = User::where('reg_no', $request->reg_no)->first();
+        $user->status = $request->status;
+        if ($request->status == 2 && $request->filled('password')) {
+            $user->password = Hash::make($request->password);
+        }
+        $user->save();
+
+        $notification = array(
+            'message' => 'Confirmed Applicant User Availability',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('applicant.users')->with($notification);
+    }
+
 
     public function ApplicantUserDelete(Request $request)
     {
