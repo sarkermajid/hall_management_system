@@ -30,7 +30,7 @@
 
         <div class="mb-4 text-center">
             <a href="{{ route('user.invoice') }}" class="btn btn-success me-2">Download Approved Invoice</a>
-            <a href="{{ route('logout') }}" class="btn btn-danger">Logout</a>
+            <a href="{{ route('admin.logout') }}" class="btn btn-danger">Logout</a>
         </div>
 
         <!-- User Details Card -->
@@ -67,7 +67,8 @@
                     <div class="col-md-12">
                         <strong>Payment Slip:</strong>
                         @if (auth()->user()->payment_slip)
-                            <a class="btn btn-sm btn-success" href="{{ asset('payment_slips/' . auth()->user()->payment_slip) }}"
+                            <a class="btn btn-sm btn-success"
+                                href="{{ asset('payment_slips/' . auth()->user()->payment_slip) }}"
                                 target="_blank">View/Download</a>
                         @else
                             Not Submitted

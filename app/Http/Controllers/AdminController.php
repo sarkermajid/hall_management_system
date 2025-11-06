@@ -32,7 +32,7 @@ class AdminController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         $notification = [
-            'message' => 'Admin Logout Successfully',
+            'message' => 'Logout Successfully',
             'alert-type' => 'success',
         ];
 

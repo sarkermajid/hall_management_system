@@ -105,7 +105,7 @@ class UserController extends Controller
             $user->password = Hash::make($request->password);
         }
         $user->save();
-        $url = config('app.url') . '/user/login';
+        $url = config('app.url') . 'user/login';
         $notification = array(
             'message' => 'Confirmed Applicant User Availability',
             'alert-type' => 'success'
