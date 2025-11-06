@@ -39,33 +39,51 @@ class LoginRequest extends FormRequest
      *
      * @throws \Illuminate\Validation\ValidationException
      */
+    // public function authenticate()
+    // {
+    //     $this->ensureIsNotRateLimited();
+    //     $user = User::where('email', $this->login)
+    //         ->first();
+    //     if (! $user || ! Hash::check($this->password, $user->password)) {
+
+    //         RateLimiter::hit($this->throttleKey());
+
+    //         session()->flash('message', 'Login failed. Please check your credentials and try again.');
+    //         session()->flash('alert-type', 'danger');
+
+    //         throw ValidationException::withMessages([
+    //             'login' => trans('auth.failed'),
+    //         ]);
+    //     }
+
+    //     Auth::login($user, $this->boolean('remember'));
+
+    //     RateLimiter::clear($this->throttleKey());
+
+    //     session()->flash('message', 'Login Successfully');
+    //     session()->flash('alert-type', 'success');
+
+    //     return redirect()->intended('admin.dashboard');
+    // }
     public function authenticate()
     {
         $this->ensureIsNotRateLimited();
-        $user = User::where('email', $this->login)
-            ->first();
 
-        if (! $user || ! Hash::check($this->password, $user->password)) {
+        $user = User::where('email', $this->login)->first();
 
+        if (!$user || !Hash::check($this->password, $user->password)) {
             RateLimiter::hit($this->throttleKey());
 
-            session()->flash('message', 'Login failed. Please check your credentials and try again.');
-            session()->flash('alert-type', 'danger');
-
             throw ValidationException::withMessages([
-                'login' => trans('auth.failed'),
+                'email' => trans('auth.failed'),
             ]);
         }
 
         Auth::login($user, $this->boolean('remember'));
 
         RateLimiter::clear($this->throttleKey());
-
-        session()->flash('message', 'Login Successfully');
-        session()->flash('alert-type', 'success');
-
-        return redirect()->intended('admin.dashboard');
     }
+
 
 
     /**
@@ -96,6 +114,6 @@ class LoginRequest extends FormRequest
      */
     public function throttleKey(): string
     {
-        return Str::transliterate(Str::lower($this->string('email')).'|'.$this->ip());
+        return Str::transliterate(Str::lower($this->string('email')) . '|' . $this->ip());
     }
 }

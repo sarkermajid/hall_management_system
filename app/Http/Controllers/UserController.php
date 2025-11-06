@@ -6,6 +6,7 @@ use App\Mail\StudentApprovedMail;
 use App\Models\Hall;
 use App\Models\Room;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -195,5 +196,22 @@ class UserController extends Controller
             'message' => 'No file received!',
             'alert-type' => 'error'
         ]);
+    }
+    public function UserLogin()
+    {
+        return view('frontend.login');
+    }
+
+    public function userDashboard()
+    {
+        return view('frontend.dashboard.dashboard');
+    }
+
+    public function downloadInvoice()
+    {
+        $user = auth()->user();
+
+        $pdf = Pdf::loadView('frontend.dashboard.invoice', compact('user'));
+        return $pdf->download('invoice_' . $user->reg_no . '.pdf'); // download with dynamic name
     }
 }

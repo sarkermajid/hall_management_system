@@ -27,6 +27,7 @@ Route::get('/payment-slip-upload/{reg_no}', [UserController::class, 'paymentSlip
 Route::post('/submit-payment-slip', [UserController::class, 'submitPaymentSlip'])->name('submitPaymentSlip');
 Route::post('/check-application-status', [UserController::class, 'checkApplicationStatus'])->name('checkApplicationStatus');
 Route::get('admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login');
+Route::get('user/login', [UserController::class, 'UserLogin'])->name('user.login');
 
 Route::middleware('auth')->group(function () {
     Route::controller(AdminController::class)->group(function () {
@@ -74,6 +75,8 @@ Route::middleware('auth')->group(function () {
         Route::get('applicant/user/delete', 'ApplicantUserDelete')->name('applicant.user.delete');
 
     });
+    Route::get('/user/dashboard', [UserController::class, 'userDashboard'])->name('user.dashboard');
+    Route::get('/user/invoice', [UserController::class, 'downloadInvoice'])->name('user.invoice');
 });
 
 

@@ -9,7 +9,7 @@
     <body>
         <div class="box">
             <div class="form">
-                <h2>Hostel Management System Admin Panel</h2>
+                <h2>Hostel Management System</h2>
                 @if (session('message'))
                     <div class="alert alert-{{ session('alert-type') }}">
                         {{ session('message') }}

@@ -23,16 +23,21 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
+
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
-
-        $user = User::find(auth()->user()->id);
         $request->session()->regenerate();
+        $user = auth()->user();
+
         $notification = [
-            'message' => $user->name.' Login Successfully',
-            'alert-type' => 'info',
+            'message' => $user->name . ' Login Successfully',
+            'alert-type' => 'success',
         ];
+
+        if ($user->role_id == 3) {
+            return redirect()->route('user.dashboard')->with($notification);
+        }
 
         return redirect()->route('admin.dashboard')->with($notification);
     }
