@@ -67,6 +67,7 @@ class UserController extends Controller
             ]);
         }
         $user->room_id = $room->id;
+        $user->hall_id = $room->hall_id;
         $user->status = 1;
         $user->room_allocated_at = now();
         $user->save();

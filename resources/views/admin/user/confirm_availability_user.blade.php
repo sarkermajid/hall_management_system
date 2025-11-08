@@ -83,7 +83,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group mb-3">
                                             <label for="hall_id" class="form-label">Hall</label>
-                                            <input type="text" value="{{ $user->Halls->name }}" name="hall_id"
+                                            <input type="text" value="{{ $user->Halls->name ?? '' }}" name="hall_id"
                                                 class="form-control" readonly>
                                         </div>
                                     </div>

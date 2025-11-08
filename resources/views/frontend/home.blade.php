@@ -19,7 +19,7 @@
         <h2>Application for Hostel Accommodation</h2>
         <!-- Success / Custom Session Message -->
         @if (session('message'))
-            <div class="alert alert-{{ session('alert-type') }}" style="margin-bottom: 15px;">
+            <div class="alert alert-{{ session('alert-type') }}" style="margin-bottom: 15px;color:green">
                 {{ session('message') }}
             </div>
         @endif
