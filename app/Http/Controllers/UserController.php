@@ -204,7 +204,7 @@ class UserController extends Controller
 
     public function userDashboard()
     {
-        return view('frontend.dashboard.dashboard');
+        return view('frontend.dashboard.user_dashboard');
     }
 
     public function downloadInvoice()

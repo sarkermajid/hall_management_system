@@ -31,12 +31,12 @@ Route::get('user/login', [UserController::class, 'UserLogin'])->name('user.login
 
 Route::middleware('auth')->group(function () {
     Route::controller(AdminController::class)->group(function () {
-        Route::get('admin/dashboard', 'AdminDashboard')->name('admin.dashboard');
+        Route::get('admin/dashboard', 'AdminDashboard')->name('admin.dashboard')->middleware('isAdmin');
         Route::get('admin/logout', 'AdminLogout')->name('admin.logout');
-        Route::get('admin/profile', 'AdminProfile')->name('admin.profile');
-        Route::post('admin/profile/update', 'AdminProfileUpdate')->name('admin.profile.update');
-        Route::get('admin/change/password', 'AdminChangePassword')->name('admin.change.password');
-        Route::post('admin/update/password', 'AdminUpdatePassword')->name('admin.update.password');
+        Route::get('admin/profile', 'AdminProfile')->name('admin.profile')->middleware('isAdmin');
+        Route::post('admin/profile/update', 'AdminProfileUpdate')->name('admin.profile.update')->middleware('isAdmin');
+        Route::get('admin/change/password', 'AdminChangePassword')->name('admin.change.password')->middleware('isAdmin');
+        Route::post('admin/update/password', 'AdminUpdatePassword')->name('admin.update.password')->middleware('isAdmin');
     });
 
     Route::controller(HallController::class)->group(function () {
@@ -55,10 +55,9 @@ Route::middleware('auth')->group(function () {
         Route::get('room/edit/{id}', 'EditRoom')->name('room.edit');
         Route::post('room/update', 'UpdateRoom')->name('room.update');
         Route::get('room/delete/{id}', 'DeleteRoom')->name('room.delete');
-
     });
 
-    Route::controller(ProvostController::class)->group(function(){
+    Route::controller(ProvostController::class)->group(function () {
         Route::get('provosts', 'Index')->name('provost.index');
         Route::get('provost/add', 'addProvost')->name('provost.add');
         Route::post('provost/store', 'storeProvost')->name('provost.store');
@@ -73,7 +72,6 @@ Route::middleware('auth')->group(function () {
         Route::get('applicant/user/availability/{id}', 'ApplicantUserAvailability')->name('applicant.user.availability');
         Route::post('confirm/user/availability', 'confirmAvailabilityUpdate')->name('confirm.user.availability');
         Route::get('applicant/user/delete', 'ApplicantUserDelete')->name('applicant.user.delete');
-
     });
     Route::get('/user/dashboard', [UserController::class, 'userDashboard'])->name('user.dashboard');
     Route::get('/user/invoice', [UserController::class, 'downloadInvoice'])->name('user.invoice');
