@@ -17,11 +17,24 @@
         @csrf
         <img src="{{ asset('frontend/img/university-logo.png') }}" width="100" height="100" alt="">
         <h2>Application for Hostel Accommodation</h2>
+        <!-- Success / Custom Session Message -->
         @if (session('message'))
-            <div class="alert alert-{{ session('alert-type') }}" style="color: green; margin-bottom:15px;">
+            <div class="alert alert-{{ session('alert-type') }}" style="margin-bottom: 15px;">
                 {{ session('message') }}
             </div>
         @endif
+
+        <!-- Validation Errors -->
+        @if ($errors->any())
+            <div class="alert alert-danger" style="margin-bottom: 15px; color:red">
+                <ul style="margin:0; padding-left: 20px;">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <div class="form-group">
             <label>Full Name:</label>
             <div class="relative">
@@ -49,7 +62,7 @@
         <div class="form-group">
             <label>Registration Number:</label>
             <div class="relative">
-                <input class="form-control" name="reg_no" value="{{ old('registration_num') }}" type="number"
+                <input class="form-control" name="reg_no" value="{{ old('registration_num') }}" type="text"
                     required="" placeholder="Mention your registration number...">
                 <i class="fa fa-building"></i>
             </div>
