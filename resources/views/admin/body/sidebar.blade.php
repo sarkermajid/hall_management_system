@@ -20,27 +20,28 @@
              </li>
              <li class="nav-item nav-category">Hostel Management System</li>
 
-             <li class="nav-item">
-                 <a class="nav-link" href="{{ route('hall.index') }}">
-                     <i class="link-icon" data-feather="chevron-right"></i>
-                     <span class="link-title">Halls</span>
-                 </a>
-             </li>
+             @if (auth()->user()->role_id == 1)
+                 <li class="nav-item">
+                     <a class="nav-link" href="{{ route('hall.index') }}">
+                         <i class="link-icon" data-feather="chevron-right"></i>
+                         <span class="link-title">Halls</span>
+                     </a>
+                 </li>
 
-             <li class="nav-item">
-                 <a class="nav-link" href="{{ route('room.index') }}">
-                     <i class="link-icon" data-feather="chevron-right"></i>
-                     <span class="link-title">Rooms</span>
-                 </a>
-             </li>
+                 <li class="nav-item">
+                     <a class="nav-link" href="{{ route('room.index') }}">
+                         <i class="link-icon" data-feather="chevron-right"></i>
+                         <span class="link-title">Rooms</span>
+                     </a>
+                 </li>
 
-             <li class="nav-item">
-                 <a class="nav-link" href="{{ route('provost.index') }}">
-                     <i class="link-icon" data-feather="chevron-right"></i>
-                     <span class="link-title">Provosts</span>
-                 </a>
-             </li>
-
+                 <li class="nav-item">
+                     <a class="nav-link" href="{{ route('provost.index') }}">
+                         <i class="link-icon" data-feather="chevron-right"></i>
+                         <span class="link-title">Provosts</span>
+                     </a>
+                 </li>
+             @endif
              <li class="nav-item">
                  <a class="nav-link" href="{{ route('applicant.users') }}">
                      <i class="link-icon" data-feather="chevron-right"></i>
@@ -48,6 +49,12 @@
                  </a>
              </li>
 
+             <li class="nav-item">
+                 <a class="nav-link" href="{{ route('notices') }}">
+                     <i class="link-icon" data-feather="chevron-right"></i>
+                     <span class="link-title">Notice Board</span>
+                 </a>
+             </li>
          </ul>
      </div>
  </nav>
