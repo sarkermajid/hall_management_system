@@ -9,4 +9,8 @@ class Notice extends Model
 {
     use HasFactory;
     protected $table = 'notices';
+    protected $fillable = [
+        'title',
+        'description',
+    ];
 }

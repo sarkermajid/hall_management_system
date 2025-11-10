@@ -47,6 +47,6 @@ class NoticeController extends Controller
             'alert-type' => 'success'
         );
 
-        return redirect()->route('Notice.index')->with($notification);
+        return redirect()->route('notice.index')->with($notification);
     }
 }
