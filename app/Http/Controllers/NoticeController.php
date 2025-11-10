@@ -14,7 +14,7 @@ class NoticeController extends Controller
         return view('admin.notice.index', compact('notices'));
     }
 
-    public function addProvost()
+    public function addNotice()
     {
         return view('admin.notice.add_notice');
     }
