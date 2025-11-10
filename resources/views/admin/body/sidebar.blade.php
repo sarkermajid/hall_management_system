@@ -50,7 +50,7 @@
              </li>
 
              <li class="nav-item">
-                 <a class="nav-link" href="{{ route('notices') }}">
+                 <a class="nav-link" href="{{ route('notice.index') }}">
                      <i class="link-icon" data-feather="chevron-right"></i>
                      <span class="link-title">Notice Board</span>
                  </a>

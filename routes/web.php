@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HallController;
+use App\Http\Controllers\NoticeController;
 use App\Http\Controllers\ProvostController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UserController;
@@ -64,6 +65,15 @@ Route::middleware('auth')->group(function () {
         Route::get('provost/edit/{id}', 'EditProvost')->name('provost.edit');
         Route::post('provost/update', 'updateProvost')->name('provost.update');
         Route::get('provost/delete/{id}', 'DeleteProvost')->name('provost.delete');
+    });
+
+    Route::controller(NoticeController::class)->group(function () {
+        Route::get('notices', 'Index')->name('notice.index');
+        Route::get('notice/add', 'addNotice')->name('notice.add');
+        Route::post('notice/store', 'storeNotice')->name('notice.store');
+        Route::get('notice/edit/{id}', 'EditNotice')->name('notice.edit');
+        Route::post('notice/update', 'updateNotice')->name('notice.update');
+        Route::get('notice/delete/{id}', 'DeleteNotice')->name('notice.delete');
     });
 
     Route::controller(UserController::class)->group(function () {
