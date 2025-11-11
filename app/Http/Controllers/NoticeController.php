@@ -38,6 +38,26 @@ class NoticeController extends Controller
         return redirect()->route('notice.index')->with($notification);
     }
 
+    public function EditNotice($id)
+    {
+        $notice = Notice::findOrFail($id);
+        return view('admin.notice.edit_notice', compact('notice'));
+    }
+
+    public function updateNotice(Request $request)
+    {
+        $notice = Notice::find($request->id);
+        $notice->title = $request->title;
+        $notice->description = $request->description;
+        $notice->save();
+
+        $notification = array(
+            'message' => 'Notice Updated Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('notice.index')->with($notification);
+    }
+
     public function DeleteNotice($id)
     {
         Notice::findOrFail($id)->delete();
