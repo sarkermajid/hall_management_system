@@ -1,7 +1,11 @@
  <nav class="sidebar">
      <div class="sidebar-header">
          <a href="#" class="sidebar-brand">
-             Admin<span> Panel</span>
+             @if (auth()->user()->role_id == 1)
+                 Admin<span> Panel</span>
+             @else
+                 Provost<span> Panel</span>
+             @endif
          </a>
          <div class="sidebar-toggler not-active">
              <span></span>
@@ -18,7 +22,7 @@
                      <span class="link-title">Dashboard</span>
                  </a>
              </li>
-             <li class="nav-item nav-category">Hostel Management System</li>
+             <li class="nav-item nav-category">Hall Management System</li>
 
              @if (auth()->user()->role_id == 1)
                  <li class="nav-item">

@@ -71,6 +71,7 @@ Route::middleware('auth')->group(function () {
         Route::get('notice/add', 'addNotice')->name('notice.add');
         Route::post('notice/store', 'storeNotice')->name('notice.store');
         Route::get('notice/edit/{id}', 'EditNotice')->name('notice.edit');
+        Route::get('notice/view/{id}', 'ViewNotice')->name('notice.view');
         Route::post('notice/update', 'updateNotice')->name('notice.update');
         Route::get('notice/delete/{id}', 'DeleteNotice')->name('notice.delete');
     });

@@ -44,6 +44,12 @@ class NoticeController extends Controller
         return view('admin.notice.edit_notice', compact('notice'));
     }
 
+    public function ViewNotice($id)
+    {
+        $notice = Notice::findOrFail($id);
+        return view('admin.notice.view_notice', compact('notice'));
+    }
+
     public function updateNotice(Request $request)
     {
         $notice = Notice::find($request->id);

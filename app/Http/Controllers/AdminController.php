@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Hall;
+use App\Models\Room;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,9 +14,9 @@ class AdminController extends Controller
 
     public function AdminLogin()
     {
-        if(auth()->user()){
+        if (auth()->user()) {
             return view('admin.admin_dashboard');
-        }else{
+        } else {
             return view('frontend.login');
         }
     }
@@ -23,7 +24,12 @@ class AdminController extends Controller
     public function AdminDashboard()
     {
         $halls = Hall::all()->count();
-        return view('admin.index',compact('halls'));
+        $totalSeats = Room::sum('total_seats');
+        $availableSeats = Room::sum('available_seats');
+        $provosts = User::where('role_id',2)->count();
+        $approveStudents = User::where('role_id',3)->where('status',2)->count();
+        $waitingStudents = User::where('role_id',3)->where('status',0)->count();
+        return view('admin.index', compact('halls','totalSeats','availableSeats','provosts','approveStudents','waitingStudents'));
     }
 
     public function AdminLogout(Request $request)
