@@ -71,6 +71,12 @@ class ProvostController extends Controller
         return redirect()->route('provost.index')->with($notification);
     }
 
+    public function ViewProvost($id)
+    {
+        $provost = User::find($id);
+        return view('admin.provost.view_provost', compact('provost'));
+    }
+
     public function DeleteProvost($id)
     {
         User::findOrFail($id)->delete();

@@ -32,8 +32,8 @@
                                             <td>{{ $item->Halls->name }}</td>
                                             <td>{{ \Carbon\Carbon::parse($item->created_at)->format('F j, Y') }}</td>
                                             <td>
-                                                <a href="{{ route('provost.edit', ['id' => $item->id]) }}"
-                                                    class="btn btn-inverse-primary"> Edit </a>
+                                                <a href="{{ route('provost.view', ['id' => $item->id]) }}"
+                                                    class="btn btn-inverse-info"> View </a>
                                                 <a href="{{ route('provost.delete', ['id' => $item->id]) }}"
                                                     class="btn btn-inverse-danger" id="delete"> Delete </a>
                                             </td>
