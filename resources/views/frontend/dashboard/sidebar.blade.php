@@ -5,7 +5,7 @@
                     <a href="{{ route('user.invoice') }}" class="btn action-btn">
                         Download Approved Invoice
                     </a>
-                    <a href="{{ route('user.invoice') }}" class="btn action-btn">
+                    <a href="{{ route('user.notice') }}" class="btn action-btn">
                         Notice
                     </a>
                     <a href="{{ route('admin.logout') }}" class="btn action-btn">

@@ -13,11 +13,11 @@
 <body class="" style="background-color: #0C1427">
     <h2 class="text-center display-5 mb-4 mt-5"
         style="font-weight: bold; font-family:'Courier New', Courier, monospace; color:#1abc9c">
-        Hostel Management System
+        Hall Management System
     </h2>
 
 
-    
+
     <div class="container mt-3">
         <div class="row">
             <div class="col-md-3">

@@ -109,7 +109,7 @@
         <!-- Signature -->
         <div class="signature">
             <strong>Authority</strong><br>
-            Hostem Management System
+            Hall Management System
             {{-- {{ $user->Halls->provost_name ?? 'Authorized Person' }} --}}
         </div>
 

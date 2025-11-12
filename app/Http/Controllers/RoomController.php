@@ -25,7 +25,7 @@ class RoomController extends Controller
     {
         $request->validate([
             'hall_id' => 'required|exists:halls,id',
-            'room_number' => 'required|integer|unique:rooms,room_number',
+            'room_number' => 'required|integer',
             'total_seats' => 'required|integer',
             'available_seats' => 'required|integer',
         ]);

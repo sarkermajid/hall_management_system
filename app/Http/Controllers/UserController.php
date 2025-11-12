@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\StudentApprovedMail;
 use App\Models\Hall;
+use App\Models\Notice;
 use App\Models\Room;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -93,11 +94,11 @@ class UserController extends Controller
             ->orderBy('id', 'DESC')
             ->get();
 
-        $users = User::where('role_id',3)
-            ->when($authUser->role_id == 2, function($query) use ($authUser){
-                $query->where('hall_id',$authUser->hall_id);
+        $users = User::where('role_id', 3)
+            ->when($authUser->role_id == 2, function ($query) use ($authUser) {
+                $query->where('hall_id', $authUser->hall_id);
             })
-            ->orderBy('id','DESC')
+            ->orderBy('id', 'DESC')
             ->get();
         return view('admin.user.applicant_users', compact('users'));
     }
@@ -228,5 +229,17 @@ class UserController extends Controller
 
         $pdf = Pdf::loadView('frontend.dashboard.invoice', compact('user'));
         return $pdf->download('invoice_' . $user->reg_no . '.pdf'); // download with dynamic name
+    }
+
+    public function userNotice()
+    {
+        $notices = Notice::orderBy('id', 'DESC')->get();
+        return view('frontend.dashboard.user_notice',compact('notices'));
+    }
+
+    public function userNoticeView($id)
+    {
+        $notice = Notice::findOrFail($id);
+        return view('frontend.dashboard.user_notice_view',compact('notice'));
     }
 }

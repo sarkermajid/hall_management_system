@@ -84,6 +84,8 @@ Route::middleware('auth')->group(function () {
     });
     Route::get('/user/dashboard', [UserController::class, 'userDashboard'])->name('user.dashboard');
     Route::get('/user/invoice', [UserController::class, 'downloadInvoice'])->name('user.invoice');
+    Route::get('/user/notice', [UserController::class, 'userNotice'])->name('user.notice');
+    Route::get('/user/notice/view/{id}', [UserController::class, 'userNoticeView'])->name('user.notice.view');
 });
 
 
