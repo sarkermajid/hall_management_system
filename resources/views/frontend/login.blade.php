@@ -1,69 +1,77 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Login</title>
-        <link rel="stylesheet" href="style.css">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    </head>
-    <body>
-        <div class="box">
-            <div class="form">
-                <h2>Hall Management System</h2>
-                @if (session('message'))
-                    <div class="alert alert-{{ session('alert-type') }}">
-                        {{ session('message') }}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="box">
+        <div class="form">
+            <h2>Hall Management System</h2>
+            @if (session('message'))
+                <div class="alert alert-{{ session('alert-type') }}">
+                    {{ session('message') }}
+                </div>
+            @endif
+            <form action="{{ route('login') }}" method="POST">
+                @if ($errors->has('email'))
+                    <div class="alert alert-danger">
+                        {{ $errors->first('email') }}
                     </div>
                 @endif
-                <form action="{{ route('login') }}" method="POST">
-                    @csrf
-                    <div class="inputBox">
-                        <input type="text" name="login" id="login" required="required">
-                        <span>Username</span>
-                        <i></i>
-                    </div>
-                    <div class="inputBox">
-                        <input type="password" name="password" id="password" required="required">
-                        <span>Password</span>
-                        <i></i>
-                    </div>
-                    <a style="padding-top:20px;"><input type="submit" value="Login"></a>
-                </form>
-            </div>
+                @csrf
+                <div class="inputBox">
+                    <input type="text" name="login" id="login" required="required">
+                    <span>Username</span>
+                    <i></i>
+                </div>
+                <div class="inputBox">
+                    <input type="password" name="password" id="password" required="required">
+                    <span>Password</span>
+                    <i></i>
+                </div>
+                <a style="padding-top:20px;"><input type="submit" value="Login"></a>
+            </form>
         </div>
-    </body>
+    </div>
+</body>
+
 </html>
 
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900%display=swap');
 
-*
-{
-    font-family: 'Poppins', 'sans-serif';
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+    * {
+        font-family: 'Poppins', 'sans-serif';
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
 
-}
+    }
 
-body{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #23242a;
-}
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: #23242a;
+    }
 
-.box {
-    position: relative;
-    width: 380px;
-    height: 420px;
-    border-radius: 8px;
-    background: #1c1c1c;
-    overflow: hidden;
-}
+    .box {
+        position: relative;
+        width: 380px;
+        height: 420px;
+        border-radius: 8px;
+        background: #1c1c1c;
+        overflow: hidden;
+    }
 
-/* .box::before{
+    /* .box::before{
     content: '';
     position: absolute;
     top: -50%;
@@ -99,115 +107,117 @@ body{
     }
 } */
 
-.form {
-    position: absolute;
-    inset: 2px;
-    border-radius: 8px;
-    background: #28292d;
-    z-index: 10;
-    padding: 50px 40px;
-    display: flex;
-    flex-direction: column;
+    .form {
+        position: absolute;
+        inset: 2px;
+        border-radius: 8px;
+        background: #28292d;
+        z-index: 10;
+        padding: 50px 40px;
+        display: flex;
+        flex-direction: column;
 
-}
-.form h2 {
-    color: #45f3ff;
-    font-size: 25px;
-    font-weight: 500;
-    text-align: center;
-    letter-spacing: 0,1em;
+    }
 
-}
+    .form h2 {
+        color: #45f3ff;
+        font-size: 25px;
+        font-weight: 500;
+        text-align: center;
+        letter-spacing: 0, 1em;
 
-.inputBox{
-    position: relative;
-    width: 300px;
-    margin-top: 35px;
+    }
 
-}
-.inputBox input {
-    position: relative;
-    width: 100%;
-    padding: 10px 9px 10px;
-    background: transparent;
-    border: none;
-    outline: none;
-    color: #23242a;
-    font-size: 1em;
-    letter-spacing: 0.05em;
-    z-index: 10;
-}
+    .inputBox {
+        position: relative;
+        width: 300px;
+        margin-top: 35px;
 
-.inputBox span{
-    position: absolute;
-    left: 0;
-    padding: 10px 10px 10px;
-    font-size: 1em;
-    color: #8f8f8f;
-    pointer-events: none;
-    letter-spacing: 0.05em;
-    transition: 0.5s;
-}
+    }
 
-.inputBox input:valid ~ span,
-.inputBox input:focus ~ span  {
-    color: #45f3ff;
-    transform: translateX(0px) translateY(-34px);
-    font-size: 0.75em;
+    .inputBox input {
+        position: relative;
+        width: 100%;
+        padding: 10px 9px 10px;
+        background: transparent;
+        border: none;
+        outline: none;
+        color: #23242a;
+        font-size: 1em;
+        letter-spacing: 0.05em;
+        z-index: 10;
+    }
 
-}
+    .inputBox span {
+        position: absolute;
+        left: 0;
+        padding: 10px 10px 10px;
+        font-size: 1em;
+        color: #8f8f8f;
+        pointer-events: none;
+        letter-spacing: 0.05em;
+        transition: 0.5s;
+    }
 
-.inputBox i {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 2px;
-    background: #45f3ff;
-    border-radius: 4px;
-    transition: 0.5s;
-    pointer-events: none;
-    z-index: 9;
-}
+    .inputBox input:valid~span,
+    .inputBox input:focus~span {
+        color: #45f3ff;
+        transform: translateX(0px) translateY(-34px);
+        font-size: 0.75em;
 
-.inputBox input:valid ~ i,
-.inputBox input:focus ~ i {
-    height: 44px;
+    }
 
-}
+    .inputBox i {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 2px;
+        background: #45f3ff;
+        border-radius: 4px;
+        transition: 0.5s;
+        pointer-events: none;
+        z-index: 9;
+    }
 
-.links {
-    display: flex;
-    justify-content: space-between;
+    .inputBox input:valid~i,
+    .inputBox input:focus~i {
+        height: 44px;
 
-}
+    }
 
-.links a {
-    margin: 10px 0;
-    font-size: 00.75em;
-    color: #8f8f8f;
-    text-decoration: none;
-}
+    .links {
+        display: flex;
+        justify-content: space-between;
 
-.links a:hover,
-.links a:nth-child(2)
- {
-    color: #45f3ff;
+    }
 
-}
-input[type='submit'] {
-    border: none;
-    outline: none;
-    background: #45f3ff;
-    padding: 11px 25px;
-    width: 100px;
-    margin-top: 10px;
-    border-radius: 4px;
-    font-weight: 600;
-    cursor: pointer;
-}
+    .links a {
+        margin: 10px 0;
+        font-size: 00.75em;
+        color: #8f8f8f;
+        text-decoration: none;
+    }
 
-input[type='submit']:active {
-    opacity: 0.8;
-}
+    .links a:hover,
+    .links a:nth-child(2) {
+        color: #45f3ff;
+
+    }
+
+    input[type='submit'] {
+        border: none;
+        outline: none;
+        background: #45f3ff;
+        padding: 11px 25px;
+        width: 100px;
+        margin-top: 10px;
+        border-radius: 4px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    input[type='submit']:active {
+        opacity: 0.8;
+    }
 </style>

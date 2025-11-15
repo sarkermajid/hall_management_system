@@ -117,6 +117,7 @@ class UserController extends Controller
 
         $user = User::where('reg_no', $request->reg_no)->first();
         $user->status = $request->status;
+        $user->expire_date = $request->expire_date;
         if ($request->status == 2 && $request->filled('password')) {
             $user->password = Hash::make($request->password);
         }

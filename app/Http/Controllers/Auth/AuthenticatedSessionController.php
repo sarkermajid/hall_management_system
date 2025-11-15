@@ -29,17 +29,24 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
         $request->session()->regenerate();
         $user = auth()->user();
+        if (isset($user)) {
+            $notification = [
+                'message' => $user->name . ' Login Successfully',
+                'alert-type' => 'success',
+            ];
 
-        $notification = [
-            'message' => $user->name . ' Login Successfully',
-            'alert-type' => 'success',
-        ];
+            if ($user->role_id == 3) {
+                return redirect()->route('user.dashboard')->with($notification);
+            }
 
-        if ($user->role_id == 3) {
-            return redirect()->route('user.dashboard')->with($notification);
+            return redirect()->route('admin.dashboard')->with($notification);
+        } else {
+            $notification = [
+                'message' => 'Your account has expired. Please contact administration.',
+                'alert-type' => 'success',
+            ];
+            return redirect()->back()->with($notification);
         }
-
-        return redirect()->route('admin.dashboard')->with($notification);
     }
 
     /**

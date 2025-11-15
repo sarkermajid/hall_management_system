@@ -1,5 +1,8 @@
 @extends('admin.admin_dashboard')
 @section('admin')
+    <!-- Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
     <div class="page-content">
         <div class="row profile-body">
             <div class="col-md-12 col-xl-12 middle-wrapper">
@@ -26,7 +29,8 @@
                                     </ul>
                                 </div>
                             @endif
-                            <form method="POST" action="{{ route('confirm.user.availability') }}" class="forms-sample" id="myForm"  enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('confirm.user.availability') }}" class="forms-sample"
+                                id="myForm" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-12">
@@ -143,6 +147,17 @@
                                     </div>
                                 </div>
 
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group mb-3">
+                                            <label for="expire_date" class="form-label">Expire Date</label>
+                                            <input type="text" id="expire_date" name="expire_date"
+                                                value="{{ $user->expire_date }}" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+
+
                                 <div class="row" id="passwordField" style="display:none;">
                                     <div class="col-md-12">
                                         <div class="form-group mb-3">
@@ -166,6 +181,14 @@
             </div>
         </div>
     </div>
+    <!-- Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        flatpickr("#expire_date", {
+            dateFormat: "Y-m-d",
+            allowInput: true,
+        });
+    </script>
 
     <script>
         function togglePasswordField() {

@@ -34,6 +34,8 @@
                                                     <span class="badge bg-primary text-white">Available</span>
                                                 @elseif($item->status == 2)
                                                     <span class="badge bg-success text-white">Approved</span>
+                                                @elseif($item->status == 3)
+                                                    <span class="badge bg-danger text-white">Expired</span>
                                                 @endif
                                             </td>
                                             <td>
@@ -42,6 +44,7 @@
                                                         0 => 'btn-inverse-warning',
                                                         1 => 'btn-inverse-primary',
                                                         2 => 'btn-inverse-success',
+                                                        3 => 'btn-inverse-danger',
                                                     };
                                                 @endphp
 
@@ -51,6 +54,8 @@
                                                         Waiting for Availability
                                                     @elseif($item->status == 1)
                                                         Check Availability
+                                                    @elseif($item->status == 3)
+                                                        Expired Applicant
                                                     @else
                                                         Confirmed Availability
                                                     @endif

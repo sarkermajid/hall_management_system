@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use Carbon\Carbon;
 
 class LoginRequest extends FormRequest
 {
@@ -70,6 +71,15 @@ class LoginRequest extends FormRequest
         $this->ensureIsNotRateLimited();
 
         $user = User::where('email', $this->login)->first();
+
+        if (isset($user->expire_date) && now()->gt(Carbon::parse($user->expire_date))) {
+
+            $user->status = 3;
+            $user->save();
+            throw ValidationException::withMessages([
+                'email' => 'Your account has expired. Please contact administration.',
+            ]);
+        }
 
         if (!$user || !Hash::check($this->password, $user->password)) {
             RateLimiter::hit($this->throttleKey());
