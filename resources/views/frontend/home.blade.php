@@ -15,7 +15,7 @@
 <body>
     <form action="{{ route('submitApplication') }}" class="form" method="POST">
         @csrf
-        <img src="{{ asset('frontend/img/university-logo.png') }}" width="100" height="100" alt="">
+        <img src="{{ asset('frontend/img/university-logo.png') }}" width="80" height="80" alt="">
         <h2>Application for Hostel Accommodation</h2>
         <!-- Success / Custom Session Message -->
         @if (session('message'))
